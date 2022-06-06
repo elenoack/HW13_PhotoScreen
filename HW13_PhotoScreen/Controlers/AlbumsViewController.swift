@@ -11,9 +11,14 @@ class AlbumsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        setupView()
     }
 
-
+    func setupView() {
+        view.backgroundColor = .white
+        title = "Для Вас"
+        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
 }
 

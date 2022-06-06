@@ -11,9 +11,13 @@ class MediaViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        setupView()
     }
 
-
+    func setupView() {
+        view.backgroundColor = .white
+        title = "Для Вас"
+        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
 }
-
