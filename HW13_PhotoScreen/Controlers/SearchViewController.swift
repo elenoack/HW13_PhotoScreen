@@ -8,15 +8,21 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
+}
 
+// MARK: - Private
+
+private extension SearchViewController {
+    
     func setupView() {
         view.backgroundColor = .white
-        title = "Для Вас"
+        title = "Поиск"
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
     }
