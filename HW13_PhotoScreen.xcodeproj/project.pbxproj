@@ -75,9 +75,9 @@
 			isa = PBXGroup;
 			children = (
 				043726FF284E181F007EE737 /* MediaViewController.swift */,
+				0437271B284E19D4007EE737 /* SelectionViewController.swift */,
 				0437271C284E19D4007EE737 /* AlbumsViewController.swift */,
 				0437271A284E19D4007EE737 /* SearchViewController.swift */,
-				0437271B284E19D4007EE737 /* SelectionViewController.swift */,
 			);
 			path = Controlers;
 			sourceTree = "<group>";
