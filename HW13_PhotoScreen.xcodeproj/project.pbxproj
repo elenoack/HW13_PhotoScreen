@@ -112,8 +112,7 @@
 			children = (
 				04B69FA6284F46080041A012 /* Item.swift */,
 			);
-			name = Models;
-			path = "../../HW13_PhotoScreen — копия/HW13_PhotoScreen/Models";
+			path = Models;
 			sourceTree = "<group>";
 		};
 		04B69F97284F2AFA0041A012 /* Extensions */ = {
