@@ -24,8 +24,39 @@ class AlbumsViewController: UIViewController, UICollectionViewDelegate {
          Item(text: "Зима", image: UIImage(named: "winter"), number: 22),
          Item(text: "Travel", image: UIImage(named: "travel"), number: 66),
          Item(text: "Deutsch", image: UIImage(named: "deutsch"), number: 103),],
-        
-        [],
+      
+        [Item(text: "Видео",
+              image: UIImage(systemName: "video")?
+            .withTintColor(.systemBlue, renderingMode: .alwaysOriginal),
+              number: 679),
+         Item(text: "Селфи",
+               image: UIImage(systemName: "person.crop.square")?
+             .withTintColor(.systemBlue, renderingMode: .alwaysOriginal),
+               number: 29),
+         Item(text: "Фото Live Photos",
+               image: UIImage(systemName: "livephoto")?
+             .withTintColor(.systemBlue, renderingMode: .alwaysOriginal),
+               number: 497),
+         Item(text: "Портреты",
+               image: UIImage(systemName: "cube")?
+             .withTintColor(.systemBlue, renderingMode: .alwaysOriginal),
+               number: 311),
+         Item(text: "Панорамы",
+               image: UIImage(systemName: "pano")?
+             .withTintColor(.systemBlue, renderingMode: .alwaysOriginal),
+               number: 7),
+         Item(text: "Серии",
+               image: UIImage(systemName: "square.stack.3d.down.right")?
+             .withTintColor(.systemBlue, renderingMode: .alwaysOriginal),
+               number: 5),
+         Item(text: "Снимки экрана",
+               image: UIImage(systemName: "camera.viewfinder")?
+             .withTintColor(.systemBlue, renderingMode: .alwaysOriginal),
+               number: 690),
+         Item(text: "Анимированные",
+               image: UIImage(systemName: "square.stack.3d.forward.dottedline")?
+             .withTintColor(.systemBlue, renderingMode: .alwaysOriginal),
+               number: 4),],
         
         [],
     ]
@@ -42,6 +73,9 @@ class AlbumsViewController: UIViewController, UICollectionViewDelegate {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(HorizontalCell.self, forCellWithReuseIdentifier: HorizontalCell.reuseID)
+        collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.reuseID)
+        collectionView.register(VerticalCell.self, forCellWithReuseIdentifier: VerticalCell.reuseID)
         return collectionView
     }()
     
@@ -67,8 +101,6 @@ private extension AlbumsViewController {
     }
     
     func setupCollectionView() {
-        collectionView.register(HorizontalCell.self, forCellWithReuseIdentifier: HorizontalCell.reuseID)
-        collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.reuseID)
         
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
@@ -97,10 +129,8 @@ private extension AlbumsViewController {
             case .second:
                 return self.secondSection()
             case .third:
-                return nil
+                return self.thirdSection()
             case .fourth:
-                return nil
-            default:
                 return nil
             }
         }
@@ -117,6 +147,8 @@ enum Sections: Int {
     case third = 2
     case fourth = 3
 }
+
+// MARK: - FirstSection
 
 private extension AlbumsViewController {
     
@@ -156,7 +188,7 @@ private extension AlbumsViewController {
             trailing: 12)
         section.orthogonalScrollingBehavior = .paging
         
-        section.contentInsets.leading = 15
+        section.contentInsets.leading = 12
         
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -172,6 +204,8 @@ private extension AlbumsViewController {
         
         return section
     }
+    
+    // MARK: - SecondSection
     
     private func secondSection() -> NSCollectionLayoutSection {
         
@@ -189,7 +223,7 @@ private extension AlbumsViewController {
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.95/2),
-            heightDimension: .fractionalWidth(1)
+            heightDimension: .fractionalWidth(0.95/2)
         )
         
         let group = NSCollectionLayoutGroup.vertical(
@@ -202,11 +236,11 @@ private extension AlbumsViewController {
         section.contentInsets = NSDirectionalEdgeInsets(
             top: 0,
             leading: 12,
-            bottom: 0,
+            bottom: 56,
             trailing: 12)
         section.orthogonalScrollingBehavior = .paging
         
-        section.contentInsets.leading = 15
+        section.contentInsets.leading = 12
         
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -215,6 +249,38 @@ private extension AlbumsViewController {
             layoutSize: headerSize,
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top)
+        header.zIndex = Int.max
+        section.boundarySupplementaryItems = [header]
+        
+        return section
+    }
+    
+    // MARK: - ThirdSection
+    
+    private func thirdSection() -> NSCollectionLayoutSection {
+        
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalWidth(1/8)
+        )
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize:  itemSize,
+            subitem: item,
+            count: 1
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        
+        section.contentInsets.leading = 12
+        
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: itemSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top)
+        
         header.zIndex = Int.max
         section.boundarySupplementaryItems = [header]
         
@@ -247,18 +313,25 @@ extension AlbumsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalCell.reuseID, for: indexPath) as! HorizontalCell
         let item = arrayItems[indexPath.section][indexPath.row]
+        
         switch (indexPath as NSIndexPath).section {
-            
         case 0, 1:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalCell.reuseID, for: indexPath) as! HorizontalCell
             cell.photoImageView.image = item.image
             cell.namePhotoLabel.text = item.text
             cell.numberPhotosLabel.text = item.number.formattedWithSeparator
+            return cell
+        case 2:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VerticalCell.reuseID, for: indexPath) as! VerticalCell
+            cell.iconView.image = item.image
+            cell.nameLabel.text = item.text
+            cell.numberPhotosLabel.text = item.number.formattedWithSeparator
+            return cell
         default:
             break
         }
-        return cell
+        return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -275,6 +348,9 @@ extension AlbumsViewController: UICollectionViewDataSource {
         case 1:
             headerView.label.text = "Общие альбомы"
             headerView.button.text = "Все"
+        case 2:
+            headerView.label.text = "Типы медиафайлов"
+            headerView.button.isHidden = true
         default:
             break
         }
