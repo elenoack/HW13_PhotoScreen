@@ -13,6 +13,10 @@
 		0437271D284E19D4007EE737 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0437271A284E19D4007EE737 /* SearchViewController.swift */; };
 		0437271E284E19D4007EE737 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0437271B284E19D4007EE737 /* SelectionViewController.swift */; };
 		0437271F284E19D4007EE737 /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0437271C284E19D4007EE737 /* AlbumsViewController.swift */; };
+		04B69F96284F2AEA0041A012 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B69F95284F2AEA0041A012 /* Item.swift */; };
+		04B69F9B284F2AFA0041A012 /* Formatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B69F98284F2AFA0041A012 /* Formatter+Extensions.swift */; };
+		04B69F9C284F2AFA0041A012 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B69F99284F2AFA0041A012 /* UIView+Constraints.swift */; };
+		04B69F9D284F2AFA0041A012 /* UInt+Extensions.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B69F9A284F2AFA0041A012 /* UInt+Extensions.swift.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		0437271A284E19D4007EE737 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0437271B284E19D4007EE737 /* SelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
 		0437271C284E19D4007EE737 /* AlbumsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
+		04B69F95284F2AEA0041A012 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Item.swift; path = ../Item.swift; sourceTree = "<group>"; };
+		04B69F98284F2AFA0041A012 /* Formatter+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+Extensions.swift"; sourceTree = "<group>"; };
+		04B69F99284F2AFA0041A012 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
+		04B69F9A284F2AFA0041A012 /* UInt+Extensions.swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UInt+Extensions.swift.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,8 @@
 		043726FA284E181F007EE737 /* HW13_PhotoScreen */ = {
 			isa = PBXGroup;
 			children = (
+				04B69F97284F2AFA0041A012 /* Extensions */,
+				04B69F94284F2AE10041A012 /* Models */,
 				0437270F284E18CA007EE737 /* Application */,
 				04372710284E18E4007EE737 /* Controlers */,
 				04372719284E1901007EE737 /* Supporting Files */,
@@ -89,6 +99,25 @@
 				04372709284E1820007EE737 /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		04B69F94284F2AE10041A012 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				04B69F95284F2AEA0041A012 /* Item.swift */,
+			);
+			name = Models;
+			path = "../../HW13_PhotoScreen — копия/HW13_PhotoScreen/Models";
+			sourceTree = "<group>";
+		};
+		04B69F97284F2AFA0041A012 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				04B69F98284F2AFA0041A012 /* Formatter+Extensions.swift */,
+				04B69F99284F2AFA0041A012 /* UIView+Constraints.swift */,
+				04B69F9A284F2AFA0041A012 /* UInt+Extensions.swift.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,7 +193,11 @@
 				0437271E284E19D4007EE737 /* SelectionViewController.swift in Sources */,
 				04372700284E181F007EE737 /* MediaViewController.swift in Sources */,
 				043726FC284E181F007EE737 /* AppDelegate.swift in Sources */,
+				04B69F9B284F2AFA0041A012 /* Formatter+Extensions.swift in Sources */,
+				04B69F96284F2AEA0041A012 /* Item.swift in Sources */,
 				0437271F284E19D4007EE737 /* AlbumsViewController.swift in Sources */,
+				04B69F9D284F2AFA0041A012 /* UInt+Extensions.swift.swift in Sources */,
+				04B69F9C284F2AFA0041A012 /* UIView+Constraints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
