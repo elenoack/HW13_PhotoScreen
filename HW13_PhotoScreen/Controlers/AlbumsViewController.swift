@@ -10,6 +10,8 @@ import UIKit
 class AlbumsViewController: UIViewController, UICollectionViewDelegate {
     // MARK: - Properties
     
+    let collectionViewHeaderFooterReuseIdentifier = "firstSectionID"
+    
     let arrayItems: [[Item]] = [
         [Item(text: "Недавние", image: UIImage(named: "house"), number: 3154),
         Item(text: "Избранное", image: UIImage(named: "cat"), number: 26),
@@ -56,8 +58,9 @@ private extension AlbumsViewController {
     }
     
     func setupCollectionView() {
-        collectionView.register(MyAlbumsCell.self, forCellWithReuseIdentifier: MyAlbumsCell.reuseID)
-        
+        collectionView.register(HorizontalCell.self, forCellWithReuseIdentifier: HorizontalCell.reuseID)
+        collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.reuseID)
+      
     view.addSubview(collectionView)
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -139,11 +142,25 @@ private extension AlbumsViewController {
         section.interGroupSpacing = 0
         section.contentInsets = NSDirectionalEdgeInsets(
             top: 0,
-            leading: 6,
+            leading: 12,
             bottom: 0,
-            trailing: 6)
+            trailing: 12)
         section.orthogonalScrollingBehavior = .paging
         
+        section.contentInsets.leading = 15
+
+            let headerSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .absolute(45))
+            let header = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: headerSize,
+                elementKind: UICollectionView.elementKindSectionHeader,
+                alignment: .top)
+//            header.pinToVisibleBounds = true
+//            header.extendsBoundary = true
+            header.zIndex = Int.max
+            section.boundarySupplementaryItems = [header]
+            
         return section
     }
 }
@@ -173,7 +190,7 @@ extension AlbumsViewController: UICollectionViewDataSource {
      
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
-         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyAlbumsCell.reuseID, for: indexPath) as! MyAlbumsCell
+         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalCell.reuseID, for: indexPath) as! HorizontalCell
          let item = arrayItems[indexPath.section][indexPath.row]
          switch (indexPath as NSIndexPath).section {
             
@@ -186,4 +203,20 @@ extension AlbumsViewController: UICollectionViewDataSource {
              }
          return cell
      }
+    
+     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+         
+         guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseID, for: indexPath) as? HeaderView else {
+                     return HeaderView()
+                 }
+         headerView.label.text = "Мои альбомы"
+         headerView.button.text = "См. все"
+                 return headerView
+             }
 }
+    
+
+    
+
+
+
