@@ -11,14 +11,14 @@ class AlbumsViewController: UIViewController, UICollectionViewDelegate {
     // MARK: - Properties
     
     let arrayItems: [[Item]] = [
-        [Item(text: "Недавние", image: UIImage(named: "house"), number: 1234),
-        Item(text: "Избранное", image: UIImage(named: "cat"), number: 1234),
-        Item(text: "Documents", image: UIImage(named: "Documents"), number: 1234),
-        Item(text: "WhatsApp", image: UIImage(named: "flowers"), number: 1234),
-        Item(text: "Lightroom", image: UIImage(named: "flowers"), number: 1234),
-        Item(text: "Рецепты", image: UIImage(named: "flowers"), number: 1234),
-        Item(text: "Инстаграм", image: UIImage(named: "flowers"), number: 1234),
-        Item(text: "VSCO", image: UIImage(named: "flowers"), number: 1234),],
+        [Item(text: "Недавние", image: UIImage(named: "house"), number: 3154),
+        Item(text: "Избранное", image: UIImage(named: "cat"), number: 26),
+        Item(text: "Documents", image: UIImage(named: "Documents"), number: 11),
+        Item(text: "WhatsApp", image: UIImage(named: "flowers"), number: 1208),
+        Item(text: "Lightroom", image: UIImage(named: "dog"), number: 67),
+        Item(text: "Рецепты", image: UIImage(named: "recipes"), number: 34),
+        Item(text: "Инстаграм", image: UIImage(named: "sea"), number: 104),
+        Item(text: "VSCO", image: UIImage(named: "bicycle"), number: 89),],
         
         [],
           
@@ -118,9 +118,9 @@ private extension AlbumsViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(
             top: 0,
-            leading: 8,
+            leading: 6,
             bottom: 0,
-            trailing: 8)
+            trailing: 6)
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.95/2),
@@ -133,7 +133,7 @@ private extension AlbumsViewController {
             count: 2
         )
         
-        group.interItemSpacing = .fixed(98)
+        group.interItemSpacing = .fixed(88)
         
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 0
