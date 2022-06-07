@@ -7,14 +7,6 @@
 
 import UIKit
 
-enum Sections: Int {
-    
-    case first = 0
-    case second = 1
-    case third = 2
-    case fourth = 3
-}
-
 class AlbumsViewController: UIViewController, UICollectionViewDelegate {
     // MARK: - Properties
     
@@ -22,7 +14,7 @@ class AlbumsViewController: UIViewController, UICollectionViewDelegate {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCell")
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
     
@@ -31,7 +23,7 @@ class AlbumsViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        view.addSubview(collectionView)
+        setupCollectionView()
     }
 }
 
@@ -45,6 +37,17 @@ private extension AlbumsViewController {
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+    
+    func setupCollectionView() {
+      
+    view.addSubview(collectionView)
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+        ])
+    }
 }
 
 // MARK: - UICollectionViewLayout
@@ -52,8 +55,9 @@ private extension AlbumsViewController {
 private extension AlbumsViewController {
     
     private func createLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int,
-                                                            layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+        let layout = UICollectionViewCompositionalLayout {
+            (sectionIndex: Int,
+             layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             
             guard let sectionLayout = Sections(rawValue: sectionIndex) else { return nil }
             
@@ -74,6 +78,17 @@ private extension AlbumsViewController {
     }
 }
 
+// MARK: - NSCollectionLayoutSection
+
+enum Sections: Int {
+    
+    case first = 0
+    case second = 1
+    case third = 2
+    case fourth = 3
+}
+
+
 // MARK: - UICollectionViewDataSource
 
 extension AlbumsViewController: UICollectionViewDataSource {
@@ -83,12 +98,23 @@ extension AlbumsViewController: UICollectionViewDataSource {
      }
      
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-         return 3
-     }
-     
-     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath)
-              return cell
+         switch section {
+         case 0:
+             return 0
+         case 1:
+             return 0
+         case 2:
+             return 0
+         case 3:
+             return 0
+         default:
+            return 0
          }
      }
+     
+//     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//
+//
+//}
 
+}
