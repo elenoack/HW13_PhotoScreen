@@ -14,20 +14,27 @@ class AlbumsViewController: UIViewController, UICollectionViewDelegate {
     
     let arrayItems: [[Item]] = [
         [Item(text: "Недавние", image: UIImage(named: "house"), number: 3154),
-        Item(text: "Избранное", image: UIImage(named: "cat"), number: 26),
-        Item(text: "Documents", image: UIImage(named: "Documents"), number: 11),
-        Item(text: "WhatsApp", image: UIImage(named: "flowers"), number: 1208),
-        Item(text: "Lightroom", image: UIImage(named: "dog"), number: 67),
-        Item(text: "Рецепты", image: UIImage(named: "recipes"), number: 34),
-        Item(text: "Инстаграм", image: UIImage(named: "sea"), number: 104),
-        Item(text: "VSCO", image: UIImage(named: "bicycle"), number: 89),],
+         Item(text: "Избранное", image: UIImage(named: "cat"), number: 26),
+         Item(text: "Documents", image: UIImage(named: "Documents"), number: 11),
+         Item(text: "WhatsApp", image: UIImage(named: "flowers"), number: 1208),
+         Item(text: "Lightroom", image: UIImage(named: "dog"), number: 67),
+         Item(text: "Рецепты", image: UIImage(named: "recipes"), number: 34),
+         Item(text: "Инстаграм", image: UIImage(named: "sea"), number: 104),
+         Item(text: "VSCO", image: UIImage(named: "bicycle"), number: 89),],
         
         [],
-          
+        
         [],
-           
+        
         [],
     ]
+    
+    private lazy var navigationButton: UIBarButtonItem = {
+        let button = UIBarButtonItem()
+        button.title = "Settings"
+        button.image = UIImage(systemName: "plus")
+        return button
+    }()
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
@@ -51,6 +58,7 @@ class AlbumsViewController: UIViewController, UICollectionViewDelegate {
 private extension AlbumsViewController {
     
     func setupView() {
+        self.navigationItem.leftBarButtonItem = navigationButton
         view.backgroundColor = .white
         title = "Альбомы"
         navigationItem.largeTitleDisplayMode = .always
@@ -60,8 +68,8 @@ private extension AlbumsViewController {
     func setupCollectionView() {
         collectionView.register(HorizontalCell.self, forCellWithReuseIdentifier: HorizontalCell.reuseID)
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.reuseID)
-      
-    view.addSubview(collectionView)
+        
+        view.addSubview(collectionView)
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -148,19 +156,19 @@ private extension AlbumsViewController {
         section.orthogonalScrollingBehavior = .paging
         
         section.contentInsets.leading = 15
-
-            let headerSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(45))
-            let header = NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: headerSize,
-                elementKind: UICollectionView.elementKindSectionHeader,
-                alignment: .top)
-//            header.pinToVisibleBounds = true
-//            header.extendsBoundary = true
-            header.zIndex = Int.max
-            section.boundarySupplementaryItems = [header]
-            
+        
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(45))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top)
+        //            header.pinToVisibleBounds = true - оставила для себя!
+        //            header.extendsBoundary = true
+        header.zIndex = Int.max
+        section.boundarySupplementaryItems = [header]
+        
         return section
     }
 }
@@ -170,51 +178,51 @@ private extension AlbumsViewController {
 extension AlbumsViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-         return 4
-     }
-     
-     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-         switch section {
-         case 0:
-             return arrayItems[0].count
-         case 1:
-             return arrayItems[1].count
-         case 2:
-             return arrayItems[2].count
-         case 3:
-             return arrayItems[3].count
-         default:
+        return 4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return arrayItems[0].count
+        case 1:
+            return arrayItems[1].count
+        case 2:
+            return arrayItems[2].count
+        case 3:
+            return arrayItems[3].count
+        default:
             return 0
-         }
-     }
-     
-     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        }
+    }
     
-         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalCell.reuseID, for: indexPath) as! HorizontalCell
-         let item = arrayItems[indexPath.section][indexPath.row]
-         switch (indexPath as NSIndexPath).section {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalCell.reuseID, for: indexPath) as! HorizontalCell
+        let item = arrayItems[indexPath.section][indexPath.row]
+        switch (indexPath as NSIndexPath).section {
             
-         case 0:
-             cell.photoImageView.image = item.image
-             cell.namePhotoLabel.text = item.text
-             cell.numberPhotosLabel.text = item.number.formattedWithSeparator
-             default:
-                 break
-             }
-         return cell
-     }
+        case 0:
+            cell.photoImageView.image = item.image
+            cell.namePhotoLabel.text = item.text
+            cell.numberPhotosLabel.text = item.number.formattedWithSeparator
+        default:
+            break
+        }
+        return cell
+    }
     
-     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-         
-         guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseID, for: indexPath) as? HeaderView else {
-                     return HeaderView()
-                 }
-         headerView.label.text = "Мои альбомы"
-         headerView.button.text = "См. все"
-                 return headerView
-             }
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseID, for: indexPath) as? HeaderView else {
+            return HeaderView()
+        }
+        headerView.label.text = "Мои альбомы"
+        headerView.button.text = "См. все"
+        return headerView
+    }
 }
-    
+
 
     
 
