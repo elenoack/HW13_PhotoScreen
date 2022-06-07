@@ -1,5 +1,5 @@
 //
-//  UInt+Extensions.swift.swift
+//  UInt Extensions.swift.swift
 //  HW13_PhotoScreen
 //
 //  Created by mac on 06.06.22.

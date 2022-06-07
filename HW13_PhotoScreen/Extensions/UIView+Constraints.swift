@@ -1,5 +1,5 @@
 //
-//  UIView+Constraints.swift
+//  UIView Constraints.swift
 //  HW13_PhotoScreen
 //
 //  Created by mac on 06.06.22.

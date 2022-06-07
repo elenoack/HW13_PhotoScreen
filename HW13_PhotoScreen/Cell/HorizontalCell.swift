@@ -17,7 +17,7 @@ class HorizontalCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    static let reuseID = "MyAlbumsCell"
+    static let reuseID = "HorizontalCell"
     
     lazy var photoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -29,18 +29,18 @@ class HorizontalCell: UICollectionViewCell {
     }()
     
     lazy var namePhotoLabel: UILabel = {
-        let lable = UILabel()
-        lable.textAlignment = .left
-        lable.font = .systemFont(ofSize: 17)
-        return lable
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: 17)
+        return label
     }()
     
     lazy var numberPhotosLabel: UILabel = {
-        let lable = UILabel()
-        lable.textAlignment = .left
-        lable.font = .systemFont(ofSize: 15)
-        lable.textColor = .gray
-        return lable
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: 15)
+        label.textColor = .gray
+        return label
     }()
     
     // MARK: - Initialization

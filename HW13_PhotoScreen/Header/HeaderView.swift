@@ -76,7 +76,9 @@ extension HeaderView {
             lineSeparators.rightAnchor.constraint(equalTo: self.rightAnchor),
         ])
         
-        stackView.addArrangedSubview(label)
-        stackView.addArrangedSubview(button)
+        stackView.addArrangedSubviewsForAutoLayout([
+            label,
+            button,
+        ])
     }
 }
