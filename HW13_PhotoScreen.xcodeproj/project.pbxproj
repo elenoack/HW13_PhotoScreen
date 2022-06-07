@@ -17,6 +17,7 @@
 		04B69F9B284F2AFA0041A012 /* Formatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B69F98284F2AFA0041A012 /* Formatter+Extensions.swift */; };
 		04B69F9C284F2AFA0041A012 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B69F99284F2AFA0041A012 /* UIView+Constraints.swift */; };
 		04B69F9D284F2AFA0041A012 /* UInt+Extensions.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B69F9A284F2AFA0041A012 /* UInt+Extensions.swift.swift */; };
+		04B69FA0284F2B960041A012 /* MyAlbumsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B69F9F284F2B960041A012 /* MyAlbumsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		04B69F98284F2AFA0041A012 /* Formatter+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+Extensions.swift"; sourceTree = "<group>"; };
 		04B69F99284F2AFA0041A012 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		04B69F9A284F2AFA0041A012 /* UInt+Extensions.swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UInt+Extensions.swift.swift"; sourceTree = "<group>"; };
+		04B69F9F284F2B960041A012 /* MyAlbumsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAlbumsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				04B69F94284F2AE10041A012 /* Models */,
 				0437270F284E18CA007EE737 /* Application */,
 				04372710284E18E4007EE737 /* Controlers */,
+				04B69F9E284F2B960041A012 /* Cell */,
 				04372719284E1901007EE737 /* Supporting Files */,
 			);
 			path = HW13_PhotoScreen;
@@ -118,6 +121,14 @@
 				04B69F9A284F2AFA0041A012 /* UInt+Extensions.swift.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		04B69F9E284F2B960041A012 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				04B69F9F284F2B960041A012 /* MyAlbumsCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +209,7 @@
 				0437271F284E19D4007EE737 /* AlbumsViewController.swift in Sources */,
 				04B69F9D284F2AFA0041A012 /* UInt+Extensions.swift.swift in Sources */,
 				04B69F9C284F2AFA0041A012 /* UIView+Constraints.swift in Sources */,
+				04B69FA0284F2B960041A012 /* MyAlbumsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
