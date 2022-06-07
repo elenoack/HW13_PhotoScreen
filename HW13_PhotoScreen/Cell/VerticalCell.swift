@@ -13,6 +13,8 @@ class VerticalCell: UICollectionViewCell {
     enum Static {
         static let indent: CGFloat = 4
         static let lineHeight: CGFloat = 1
+        static let lineIndent: CGFloat = 48
+        static let iconSize: CGFloat = 28
     }
     
     // MARK: - Properties
@@ -21,7 +23,7 @@ class VerticalCell: UICollectionViewCell {
     
     lazy var iconView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.layer.masksToBounds = true
         imageView.clipsToBounds = true
         return imageView
@@ -30,7 +32,7 @@ class VerticalCell: UICollectionViewCell {
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.font = .systemFont(ofSize: 20, weight: .regular)
         label.textColor = .systemBlue
         return label
     }()
@@ -45,16 +47,11 @@ class VerticalCell: UICollectionViewCell {
     
     lazy var button: UIButton = {
         let button = UIButton()
-        button.imageView?.image = UIImage(systemName: "chevron.right")
-        button.imageView?.tintColor = .gray
+        button.layer.masksToBounds = true
+        let image = UIImage(systemName: "chevron.right", withConfiguration:  UIImage.SymbolConfiguration(pointSize: 16, weight: .semibold))?
+            .withTintColor(.systemGray4, renderingMode: .alwaysOriginal)
+        button.setImage(image, for: .normal)
         return button
-    }()
-    
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .fill
-        return stackView
     }()
     
     lazy var lineSeparators: UIView = {
@@ -81,21 +78,34 @@ extension VerticalCell {
     
     func configure() {
         contentView.addSubviewsForAutoLayout([
-            stackView,
+            iconView,
             lineSeparators,
+            nameLabel,
+            button,
+            numberPhotosLabel,
         ])
         
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-            stackView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
+            iconView.heightAnchor.constraint(equalToConstant: Static.iconSize),
+            iconView.widthAnchor.constraint(equalToConstant: Static.iconSize),
+            iconView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            iconView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Static.indent),
             
-            lineSeparators.topAnchor.constraint(equalTo: stackView.bottomAnchor),
+            lineSeparators.topAnchor.constraint(equalTo: self.bottomAnchor),
             lineSeparators.heightAnchor.constraint(equalToConstant: Static.lineHeight),
-            lineSeparators.leftAnchor.constraint(equalTo: layoutMarginsGuide.leftAnchor),
-            lineSeparators.rightAnchor.constraint(equalTo: self.rightAnchor),
+            lineSeparators.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Static.lineIndent),
+            lineSeparators.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            
+            nameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Static.lineIndent),
+            
+            button.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            button.heightAnchor.constraint(equalToConstant: Static.iconSize),
+            button.widthAnchor.constraint(equalToConstant: Static.iconSize),
+            button.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -Static.indent),
+
+            numberPhotosLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            numberPhotosLabel.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: -Static.lineHeight),
         ])
     }
 }
-

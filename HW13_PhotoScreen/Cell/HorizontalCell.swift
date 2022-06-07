@@ -38,7 +38,7 @@ class HorizontalCell: UICollectionViewCell {
     lazy var numberPhotosLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 15)
+        label.font = .systemFont(ofSize: 17)
         label.textColor = .gray
         return label
     }()
