@@ -10,6 +10,23 @@ import UIKit
 class AlbumsViewController: UIViewController, UICollectionViewDelegate {
     // MARK: - Properties
     
+    let arrayItems: [[Item]] = [
+        [Item(text: "Недавние", image: UIImage(named: "house"), number: 1234),
+        Item(text: "Избранное", image: UIImage(named: "cat"), number: 1234),
+        Item(text: "Documents", image: UIImage(named: "Documents"), number: 1234),
+        Item(text: "WhatsApp", image: UIImage(named: "flowers"), number: 1234),
+        Item(text: "Lightroom", image: UIImage(named: "flowers"), number: 1234),
+        Item(text: "Рецепты", image: UIImage(named: "flowers"), number: 1234),
+        Item(text: "Инстаграм", image: UIImage(named: "flowers"), number: 1234),
+        Item(text: "VSCO", image: UIImage(named: "flowers"), number: 1234),],
+        
+        [],
+          
+        [],
+           
+        [],
+    ]
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.dataSource = self
@@ -39,7 +56,8 @@ private extension AlbumsViewController {
     }
     
     func setupCollectionView() {
-      
+        collectionView.register(MyAlbumsCell.self, forCellWithReuseIdentifier: MyAlbumsCell.reuseID)
+        
     view.addSubview(collectionView)
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -63,7 +81,7 @@ private extension AlbumsViewController {
             
             switch sectionLayout {
             case .first:
-                return nil
+                return self.firstSection()
             case .second:
                 return nil
             case .third:
@@ -88,6 +106,47 @@ enum Sections: Int {
     case fourth = 3
 }
 
+private extension AlbumsViewController {
+    
+    private func firstSection() -> NSCollectionLayoutSection {
+        
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalWidth(1)
+        )
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(
+            top: 0,
+            leading: 8,
+            bottom: 0,
+            trailing: 8)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(0.95/2),
+            heightDimension: .fractionalWidth(1)
+        )
+        
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: groupSize,
+            subitem: item,
+            count: 2
+        )
+        
+        group.interItemSpacing = .fixed(98)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 0
+        section.contentInsets = NSDirectionalEdgeInsets(
+            top: 0,
+            leading: 6,
+            bottom: 0,
+            trailing: 6)
+        section.orthogonalScrollingBehavior = .paging
+        
+        return section
+    }
+}
 
 // MARK: - UICollectionViewDataSource
 
@@ -100,21 +159,31 @@ extension AlbumsViewController: UICollectionViewDataSource {
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
          switch section {
          case 0:
-             return 0
+             return arrayItems[0].count
          case 1:
-             return 0
+             return arrayItems[1].count
          case 2:
-             return 0
+             return arrayItems[2].count
          case 3:
-             return 0
+             return arrayItems[3].count
          default:
             return 0
          }
      }
      
-//     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//
-//
-//}
-
+     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
+         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyAlbumsCell.reuseID, for: indexPath) as! MyAlbumsCell
+         let item = arrayItems[indexPath.section][indexPath.row]
+         switch (indexPath as NSIndexPath).section {
+            
+         case 0:
+             cell.photoImageView.image = item.image
+             cell.namePhotoLabel.text = item.text
+             cell.numberPhotosLabel.text = item.number.formattedWithSeparator
+             default:
+                 break
+             }
+         return cell
+     }
 }
