@@ -12,6 +12,12 @@ class HeaderView: UICollectionReusableView {
     
     static let reuseID = "Header"
     
+    lazy var lineSeparators: UIView = {
+        let line = UIView()
+        line.backgroundColor = .systemGray4
+        return line
+    }()
+    
     lazy var label: UILabel = {
         let lable = UILabel()
         lable.textAlignment = .left
@@ -53,13 +59,21 @@ extension HeaderView {
     
     func configure() {
         
-        addSubview(stackView)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        addSubviewsForAutoLayout([
+            stackView,
+            lineSeparators
+        ])
+        
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
             stackView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
+            
+            lineSeparators.bottomAnchor.constraint(equalTo: stackView.topAnchor),
+            lineSeparators.heightAnchor.constraint(equalToConstant: 1),
+            lineSeparators.leftAnchor.constraint(equalTo: layoutMarginsGuide.leftAnchor),
+            lineSeparators.rightAnchor.constraint(equalTo: self.rightAnchor),
         ])
         
         stackView.addArrangedSubview(label)

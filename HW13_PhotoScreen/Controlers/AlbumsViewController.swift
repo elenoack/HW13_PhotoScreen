@@ -129,7 +129,7 @@ private extension AlbumsViewController {
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(
-            top: 0,
+            top: 12,
             leading: 6,
             bottom: 0,
             trailing: 6)
@@ -152,7 +152,7 @@ private extension AlbumsViewController {
         section.contentInsets = NSDirectionalEdgeInsets(
             top: 0,
             leading: 12,
-            bottom: 26,
+            bottom: 98,
             trailing: 12)
         section.orthogonalScrollingBehavior = .paging
         
@@ -182,7 +182,7 @@ private extension AlbumsViewController {
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(
-            top: -55,
+            top: 0,
             leading: 6,
             bottom: 0,
             trailing: 6)
@@ -210,7 +210,7 @@ private extension AlbumsViewController {
         
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(155))
+            heightDimension: .absolute(65))
         let header = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
             elementKind: UICollectionView.elementKindSectionHeader,
@@ -266,15 +266,15 @@ extension AlbumsViewController: UICollectionViewDataSource {
         guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseID, for: indexPath) as? HeaderView else {
             return HeaderView()
         }
-//        headerView.frame.size.height = 68
+        headerView.frame.size.height = 68
         
         switch indexPath.section  {
         case 0:
             headerView.label.text = "Мои альбомы"
-            headerView.button.text = "См. все"
+            headerView.button.text = "Все"
         case 1:
             headerView.label.text = "Общие альбомы"
-            headerView.button.text = "См. все"
+            headerView.button.text = "Все"
         default:
             break
         }
