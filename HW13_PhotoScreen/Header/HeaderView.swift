@@ -72,8 +72,8 @@ extension HeaderView {
             
             lineSeparators.bottomAnchor.constraint(equalTo: stackView.topAnchor),
             lineSeparators.heightAnchor.constraint(equalToConstant: 1),
-            lineSeparators.leftAnchor.constraint(equalTo: layoutMarginsGuide.leftAnchor),
-            lineSeparators.rightAnchor.constraint(equalTo: self.rightAnchor),
+            lineSeparators.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            lineSeparators.trailingAnchor.constraint(equalTo: self.trailingAnchor),
         ])
         
         stackView.addArrangedSubviewsForAutoLayout([
