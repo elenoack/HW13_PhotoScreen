@@ -8,6 +8,15 @@
 import UIKit
 
 class AlbumsViewController: UIViewController, UICollectionViewDelegate {
+    // MARK: - Constants
+    
+    enum Static {
+        static let layoutIndent: CGFloat = 12
+        static let leftIndentLayout: CGFloat = 6
+        static let photoRadius: CGFloat = 10
+        static let topIndentVerticalSection: CGFloat = 18
+    }
+    
     // MARK: - Properties
     
     let arrayItems: [[Item]] = [
@@ -118,7 +127,7 @@ private extension AlbumsViewController {
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
 }
@@ -172,10 +181,10 @@ private extension AlbumsViewController {
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(
-            top: 12,
-            leading: 6,
-            bottom: 0,
-            trailing: 6)
+            top: Static.layoutIndent,
+            leading: Static.leftIndentLayout,
+            bottom: .zero,
+            trailing: Static.leftIndentLayout)
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.95/2),
@@ -191,15 +200,15 @@ private extension AlbumsViewController {
         group.interItemSpacing = .fixed(88)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 0
+        section.interGroupSpacing = .zero
         section.contentInsets = NSDirectionalEdgeInsets(
-            top: 0,
-            leading: 12,
+            top: .zero,
+            leading: Static.layoutIndent,
             bottom: 98,
-            trailing: 12)
+            trailing: Static.layoutIndent)
         section.orthogonalScrollingBehavior = .paging
         
-        section.contentInsets.leading = 12
+        section.contentInsets.leading = Static.layoutIndent
         
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -227,10 +236,10 @@ private extension AlbumsViewController {
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(
-            top: 0,
-            leading: 6,
-            bottom: 0,
-            trailing: 6)
+            top: .zero,
+            leading: Static.leftIndentLayout,
+            bottom: .zero,
+            trailing: Static.leftIndentLayout)
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.95/2),
@@ -245,13 +254,13 @@ private extension AlbumsViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(
-            top: 0,
-            leading: 12,
+            top: .zero,
+            leading: Static.layoutIndent,
             bottom: 56,
-            trailing: 12)
+            trailing: Static.layoutIndent)
         section.orthogonalScrollingBehavior = .paging
         
-        section.contentInsets.leading = 12
+        section.contentInsets.leading = Static.layoutIndent
         
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -276,6 +285,11 @@ private extension AlbumsViewController {
         )
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(
+            top: Static.topIndentVerticalSection,
+            leading: .zero,
+            bottom: .zero,
+            trailing: .zero)
         
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize:  itemSize,
@@ -285,7 +299,7 @@ private extension AlbumsViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         
-        section.contentInsets.leading = 12
+        section.contentInsets.leading = Static.layoutIndent
         
         let header = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: itemSize,
@@ -308,6 +322,11 @@ private extension AlbumsViewController {
         )
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(
+            top: Static.topIndentVerticalSection,
+            leading: .zero,
+            bottom: .zero,
+            trailing: .zero)
         
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize:  itemSize,
@@ -317,7 +336,7 @@ private extension AlbumsViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         
-        section.contentInsets.leading = 12
+        section.contentInsets.leading = Static.layoutIndent
         
         let header = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: itemSize,

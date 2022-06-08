@@ -1,5 +1,5 @@
 //
-//  Formatter+Extensions.swift
+//  Formatter Extensions.swift
 //  HW13_PhotoScreen
 //
 //  Created by mac on 06.06.22.

@@ -69,7 +69,7 @@ extension HorizontalCell {
         NSLayoutConstraint.activate([
             photoImageView.topAnchor.constraint(equalTo: self.topAnchor),
             photoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            photoImageView.rightAnchor.constraint(equalTo: self.rightAnchor),
+            photoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             photoImageView.heightAnchor.constraint(equalTo: photoImageView.widthAnchor),
             
             namePhotoLabel.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: Static.indent),
