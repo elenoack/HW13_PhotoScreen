@@ -414,9 +414,11 @@ extension AlbumsViewController: UICollectionViewDataSource {
         switch indexPath.section  {
         case 0:
             headerView.label.text = "Мои альбомы"
+            headerView.button.isHidden = false
             headerView.button.text = "Все"
         case 1:
             headerView.label.text = "Общие альбомы"
+            headerView.button.isHidden = false
             headerView.button.text = "Все"
         case 2:
             headerView.label.text = "Типы медиафайлов"
