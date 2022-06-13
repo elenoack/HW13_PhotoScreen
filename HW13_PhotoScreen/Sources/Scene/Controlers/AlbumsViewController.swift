@@ -8,7 +8,6 @@
 import UIKit
 
 class AlbumsViewController: UIViewController, UICollectionViewDelegate {
- 
     // MARK: - Properties
     
     private var screenView: ScreenView? {

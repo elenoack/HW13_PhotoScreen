@@ -1,9 +1,8 @@
 //
 //  DataManger.swift
-//  MVC Example
+//  HW13_PhotoScreen
 //
-//  Created by Alexey Efimov on 14/08/2019.
-//  Copyright © 2019 Alexey Efimov. All rights reserved.
+//  Created by mac on 13.06.22.
 //
 
 import UIKit

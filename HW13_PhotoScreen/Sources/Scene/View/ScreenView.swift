@@ -79,6 +79,7 @@ final class ScreenView: UIView {
 private extension ScreenView {
     
     private func createLayout() -> UICollectionViewLayout {
+        
         let layout = UICollectionViewCompositionalLayout {
             (sectionIndex: Int,
              layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
@@ -168,7 +169,7 @@ private extension ScreenView {
     }
     
     // MARK: - NSCollectionLayoutSection - SecondSection
-    
+
     private func secondSection() -> NSCollectionLayoutSection {
         
         let itemSize = NSCollectionLayoutSize(
