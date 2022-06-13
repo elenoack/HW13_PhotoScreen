@@ -11,7 +11,7 @@ class HorizontalCell: UICollectionViewCell {
     // MARK: - Constants
     
     enum Metric {
-        static let indent: CGFloat = 4
+        static let indent: CGFloat = 5
         static let photoRadius: CGFloat = 10
     }
     
