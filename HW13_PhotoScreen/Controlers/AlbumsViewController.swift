@@ -10,7 +10,7 @@ import UIKit
 class AlbumsViewController: UIViewController, UICollectionViewDelegate {
     // MARK: - Constants
     
-    enum Static {
+    enum Metric {
         static let layoutIndent: CGFloat = 12
         static let leftIndentLayout: CGFloat = 6
         static let photoRadius: CGFloat = 10
@@ -181,10 +181,10 @@ private extension AlbumsViewController {
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(
-            top: Static.layoutIndent,
-            leading: Static.leftIndentLayout,
+            top: Metric.layoutIndent,
+            leading: Metric.leftIndentLayout,
             bottom: .zero,
-            trailing: Static.leftIndentLayout)
+            trailing: Metric.leftIndentLayout)
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.95/2),
@@ -203,12 +203,12 @@ private extension AlbumsViewController {
         section.interGroupSpacing = .zero
         section.contentInsets = NSDirectionalEdgeInsets(
             top: .zero,
-            leading: Static.layoutIndent,
+            leading: Metric.layoutIndent,
             bottom: 98,
-            trailing: Static.layoutIndent)
+            trailing: Metric.layoutIndent)
         section.orthogonalScrollingBehavior = .paging
         
-        section.contentInsets.leading = Static.layoutIndent
+        section.contentInsets.leading = Metric.layoutIndent
         
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -237,9 +237,9 @@ private extension AlbumsViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(
             top: .zero,
-            leading: Static.leftIndentLayout,
+            leading: Metric.leftIndentLayout,
             bottom: .zero,
-            trailing: Static.leftIndentLayout)
+            trailing: Metric.leftIndentLayout)
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.95/2),
@@ -255,12 +255,12 @@ private extension AlbumsViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(
             top: .zero,
-            leading: Static.layoutIndent,
+            leading: Metric.layoutIndent,
             bottom: 56,
-            trailing: Static.layoutIndent)
+            trailing: Metric.layoutIndent)
         section.orthogonalScrollingBehavior = .paging
         
-        section.contentInsets.leading = Static.layoutIndent
+        section.contentInsets.leading = Metric.layoutIndent
         
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -286,7 +286,7 @@ private extension AlbumsViewController {
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(
-            top: Static.topIndentVerticalSection,
+            top: Metric.topIndentVerticalSection,
             leading: .zero,
             bottom: .zero,
             trailing: .zero)
@@ -299,7 +299,7 @@ private extension AlbumsViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         
-        section.contentInsets.leading = Static.layoutIndent
+        section.contentInsets.leading = Metric.layoutIndent
         
         let header = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: itemSize,
@@ -323,7 +323,7 @@ private extension AlbumsViewController {
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(
-            top: Static.topIndentVerticalSection,
+            top: Metric.topIndentVerticalSection,
             leading: .zero,
             bottom: .zero,
             trailing: .zero)
@@ -336,7 +336,7 @@ private extension AlbumsViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         
-        section.contentInsets.leading = Static.layoutIndent
+        section.contentInsets.leading = Metric.layoutIndent
         
         let header = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: itemSize,
@@ -379,20 +379,20 @@ extension AlbumsViewController: UICollectionViewDataSource {
         
         switch (indexPath as NSIndexPath).section {
         case 0...1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalCell.reuseID, for: indexPath) as! HorizontalCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalCell.reuseID, for: indexPath) as? HorizontalCell else { return UICollectionViewCell() }
             cell.photoImageView.image = item.image
             cell.namePhotoLabel.text = item.text
             cell.numberPhotosLabel.text = item.number.formattedWithSeparator
             return cell
         case 2:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VerticalCell.reuseID, for: indexPath) as! VerticalCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VerticalCell.reuseID, for: indexPath) as? VerticalCell else { return UICollectionViewCell() }
             cell.iconView.image = item.image
             cell.nameLabel.text = item.text
             cell.numberPhotosLabel.text = item.number.formattedWithSeparator
             cell.lineSeparators.isHidden = indexPath.row == 7 ? true : false
             return cell
         case 3:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VerticalCell.reuseID, for: indexPath) as! VerticalCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VerticalCell.reuseID, for: indexPath) as? VerticalCell else { return UICollectionViewCell() }
             cell.iconView.image = item.image
             cell.nameLabel.text = item.text
             cell.numberPhotosLabel.text = item.number.formattedWithSeparator
@@ -407,8 +407,7 @@ extension AlbumsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     
         guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseID, for: indexPath) as? HeaderView else {
-            return HeaderView()
-        }
+            return HeaderView() }
         headerView.frame.size.height = 68
         
         switch indexPath.section  {

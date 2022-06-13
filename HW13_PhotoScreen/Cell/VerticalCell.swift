@@ -10,7 +10,7 @@ import UIKit
 class VerticalCell: UICollectionViewCell {
     // MARK: - Constants
     
-    enum Static {
+    enum Metric {
         static let indent: CGFloat = 4
         static let lineHeight: CGFloat = 1
         static let lineIndent: CGFloat = 48
@@ -86,26 +86,26 @@ extension VerticalCell {
         ])
         
         NSLayoutConstraint.activate([
-            iconView.heightAnchor.constraint(equalToConstant: Static.iconSize),
-            iconView.widthAnchor.constraint(equalToConstant: Static.iconSize),
+            iconView.heightAnchor.constraint(equalToConstant: Metric.iconSize),
+            iconView.widthAnchor.constraint(equalToConstant: Metric.iconSize),
             iconView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            iconView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Static.indent),
+            iconView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metric.indent),
             
             lineSeparators.topAnchor.constraint(equalTo: self.bottomAnchor),
-            lineSeparators.heightAnchor.constraint(equalToConstant: Static.lineHeight),
-            lineSeparators.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Static.lineIndent),
+            lineSeparators.heightAnchor.constraint(equalToConstant: Metric.lineHeight),
+            lineSeparators.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metric.lineIndent),
             lineSeparators.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             
             nameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Static.lineIndent),
+            nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metric.lineIndent),
             
             button.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            button.heightAnchor.constraint(equalToConstant: Static.iconSize),
-            button.widthAnchor.constraint(equalToConstant: Static.iconSize),
-            button.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -Static.indent),
+            button.heightAnchor.constraint(equalToConstant: Metric.iconSize),
+            button.widthAnchor.constraint(equalToConstant: Metric.iconSize),
+            button.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -Metric.indent),
 
             numberPhotosLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            numberPhotosLabel.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: -Static.lineHeight),
+            numberPhotosLabel.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: -Metric.lineHeight),
         ])
     }
 }

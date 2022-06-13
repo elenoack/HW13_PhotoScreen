@@ -56,7 +56,6 @@ class HeaderView: UICollectionReusableView {
 // MARK: - Configuration
 
 extension HeaderView {
-    
     func configure() {
         
         addSubviewsForAutoLayout([
