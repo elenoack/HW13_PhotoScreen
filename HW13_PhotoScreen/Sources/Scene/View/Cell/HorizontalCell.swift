@@ -10,8 +10,8 @@ import UIKit
 class HorizontalCell: UICollectionViewCell {
     // MARK: - Constants
     
-    enum Static {
-        static let indent: CGFloat = 4
+    enum Metric {
+        static let indent: CGFloat = 5
         static let photoRadius: CGFloat = 10
     }
     
@@ -21,7 +21,7 @@ class HorizontalCell: UICollectionViewCell {
     
     lazy var photoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.cornerRadius = Static.photoRadius
+        imageView.layer.cornerRadius = Metric.photoRadius
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         imageView.clipsToBounds = true
@@ -72,9 +72,9 @@ extension HorizontalCell {
             photoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             photoImageView.heightAnchor.constraint(equalTo: photoImageView.widthAnchor),
             
-            namePhotoLabel.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: Static.indent),
+            namePhotoLabel.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: Metric.indent),
             
-            numberPhotosLabel.topAnchor.constraint(equalTo: namePhotoLabel.bottomAnchor, constant: Static.indent),
+            numberPhotosLabel.topAnchor.constraint(equalTo: namePhotoLabel.bottomAnchor, constant: Metric.indent),
         ])
     }
 }
