@@ -1,5 +1,5 @@
 //
-//  MediaViewController.swift
+//  SelectionViewController.swift
 //  HW13_PhotoScreen
 //
 //  Created by mac on 06.06.22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MediaViewController: UIViewController {
+class SelectionViewController: UIViewController {
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -18,14 +18,12 @@ class MediaViewController: UIViewController {
 
 // MARK: - Private
 
-private extension MediaViewController {
+private extension SelectionViewController {
     
     func setupView() {
-        view.backgroundColor = .white
-        title = "Медиатека"
+        view.backgroundColor = .systemBackground
+        title = "Для Вас"
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
-
-
